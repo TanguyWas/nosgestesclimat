@@ -213,10 +213,9 @@ divers . animaux domestiques . empreinte . petit chien . empreinte:
       - soins vétérinaires par animal
 
 divers . animaux domestiques . empreinte . petit chien . alimentation:
-  formule:
-    valeur: chiens . alimentation
-    contexte:
-      chiens . alimentation . besoins énergétiques journaliers . facteur poids . taille chien: "'petit chien'"
+  valeur: chiens . alimentation
+  contexte:
+    chiens . alimentation . besoins énergétiques journaliers . facteur poids . taille chien: "'petit chien'"
 
 divers . animaux domestiques . empreinte . chien moyen:
   icônes: 🐶
@@ -238,10 +237,9 @@ divers . animaux domestiques . empreinte . chien moyen . empreinte:
       - soins vétérinaires par animal
 
 divers . animaux domestiques . empreinte . chien moyen . alimentation:
-  formule:
-    valeur: chiens . alimentation
-    contexte:
-      chiens . alimentation . besoins énergétiques journaliers . facteur poids . taille chien: "'chien moyen'"
+  valeur: chiens . alimentation
+  contexte:
+    chiens . alimentation . besoins énergétiques journaliers . facteur poids . taille chien: "'chien moyen'"
 
 divers . animaux domestiques . empreinte . gros chien:
   icônes: 🐶
@@ -263,10 +261,9 @@ divers . animaux domestiques . empreinte . gros chien . empreinte:
       - soins vétérinaires par animal
 
 divers . animaux domestiques . empreinte . gros chien . alimentation:
-  formule:
-    valeur: chiens . alimentation
-    contexte:
-      chiens . alimentation . besoins énergétiques journaliers . facteur poids . taille chien: "'gros chien'"
+  valeur: chiens . alimentation
+  contexte:
+    chiens . alimentation . besoins énergétiques journaliers . facteur poids . taille chien: "'gros chien'"
 
 divers . animaux domestiques . empreinte . chiens . alimentation:
   formule: besoin journalier nourriture * commun . jours par an * empreinte nourriture
