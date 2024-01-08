@@ -129,7 +129,8 @@ logement . remplacer fioul par bois:
 logement . remplacer fioul par bois . alternative:
   formule: chauffage . fioul . consommation / chauffage . fioul kWh au litre * chauffage . bois . facteur d'émission granulés
 
-logement . éclairage: oui
+logement . éclairage:
+
 logement . éclairage . LED:
   titre: Remplacer mes ampoules par des LED
   icônes: 💡🔄
