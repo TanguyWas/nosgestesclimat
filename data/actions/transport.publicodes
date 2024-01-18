@@ -58,7 +58,6 @@ transport . arrêter l'avion court:
     l’échelle individuelle qu’à l’échelle de la société réduire notre impact sur le climat
 
     [Comparez les modes de transport ici](https://monimpacttransport.fr)
-
   #chiffres clefs
   #Un aller-retour Paris-Marseille émet environ 250 kgCO2eq en avion contre seulement 3 kgCO2eq en train (source Base Carbone)
   #Choisir de se rendre, depuis Paris, à Barcelone (en train) plutôt qu’à Marrakech (en avion) permettra d’éviter d’émettre 781 kg de CO2eq (source Base Carbone)
@@ -132,13 +131,9 @@ transport . éco-conduite:
 transport . éco-conduite . recalcul:
   note: Un recalcul est nécessaire ici, car l'utilisateur peut avoir utilisé l'outil d'aide à la saisie qui proratise alors la variable km au nombre de voyageurs. Sinon ce n'est pas le cas.
   formule:
-    recalcul:
-      règle: transport . voiture . empreinte calculée
-      avec:
-        transport . voiture . usage: transport . éco-conduite . usage réduit
-      # Impossible to change directly the rule we want to replace
-      # Can't do this : transport . voiture . empreinte . usage: transport . voiture . empreinte . usage * 0.85
-
+    valeur: transport . voiture . empreinte calculée
+    contexte:
+      transport . voiture . usage: transport . éco-conduite . usage réduit
 transport . éco-conduite . usage réduit:
   formule: (transport . voiture . km * transport . voiture . empreinte au kilomètre) * 0.85
   unité: kgCO2e
@@ -327,26 +322,23 @@ transport . boulot . commun . type:
 
 transport . boulot . recalcul vélo:
   formule:
-    recalcul:
-      règle: transport . mobilité douce . vélo
-      avec:
-        transport . mobilité douce . vélo . présent: oui
+    valeur: transport . mobilité douce . vélo
+    contexte:
+      transport . mobilité douce . vélo . présent: oui
 
 transport . boulot . recalcul vae:
   formule:
-    recalcul:
-      règle: transport . mobilité douce . vae
-      avec:
-        transport . mobilité douce . vae . présent: oui
-        transport . mobilité douce . vae . km: transport . boulot . distance
+    valeur: transport . mobilité douce . vae
+    contexte:
+      transport . mobilité douce . vae . présent: oui
+      transport . mobilité douce . vae . km: transport . boulot . distance
 
 transport . boulot . recalcul autres véhicules à moteur:
   formule:
-    recalcul:
-      règle: transport . mobilité douce . autres véhicules à moteur
-      avec:
-        transport . mobilité douce . autres véhicules à moteur . présent: oui
-        transport . mobilité douce . autres véhicules à moteur . km: transport . boulot . distance
+    valeur: transport . mobilité douce . autres véhicules à moteur
+    contexte:
+      transport . mobilité douce . autres véhicules à moteur . présent: oui
+      transport . mobilité douce . autres véhicules à moteur . km: transport . boulot . distance
 
 transport . boulot . télétravail:
   titre: Faire du télétravail
@@ -408,7 +400,6 @@ transport . voiture 5km:
     tout en décongestionnant les voies urbaines et en améliorant la qualité de l’air de nos villes polluées.
 
     > 💡 Le saviez-vous ? L'État et beaucoup de régions ou villes subventionnent les vélos mécaniques, électriques, cargo, pliants, etc. [Calculez votre aide 🚲️ en 3 clics](https://mesaidesvelo.fr).
-
   # 4 trajets en voiture sur 10 font moins de 3 km +  10% de la distance totale parcourue = Transflash, N°398, Juin 2015, Cerema
   # 177 millions de trajets de moins de 5km = consolidation depuis Enquête Nationale Transport et Déplacements (ENTD), MTES, 2008.
 
@@ -435,10 +426,9 @@ transport . distance moyenne trajet court:
 
 transport . voiture 5km . recalcul:
   formule:
-    recalcul:
-      règle: transport . voiture . empreinte calculée
-      avec:
-        transport . voiture . usage: transport . voiture 5km . usage réduit
+    valeur: transport . voiture . empreinte calculée
+    contexte:
+      transport . voiture . usage: transport . voiture 5km . usage réduit
 
 transport . voiture 5km . usage réduit:
   formule: (transport . voiture . km - distance totale) * transport . voiture . empreinte au kilomètre
@@ -485,10 +475,9 @@ transport . super ethanol:
 
 transport . super ethanol . recalcul:
   formule:
-    recalcul:
-      règle: transport . voiture . empreinte calculée
-      avec:
-        transport . voiture . thermique . carburant: "'essence E85'"
+    valeur: transport . voiture . empreinte calculée
+    contexte:
+      transport . voiture . thermique . carburant: "'essence E85'"
 
 transport . super ethanol . taux surconsommation:
   formule: 125%
@@ -520,10 +509,9 @@ transport . scooter électrique:
 
 transport . scooter électrique . recalcul:
   formule:
-    recalcul:
-      règle: transport . deux roues
-      avec:
-        transport . deux roues . type: "'scooter électrique'"
+    valeur: transport . deux roues
+    contexte:
+      transport . deux roues . type: "'scooter électrique'"
 
 transport . voiture électrique:
   titre: Rouler en voiture électrique
@@ -548,11 +536,6 @@ transport . voiture électrique:
 
 transport . voiture électrique . recalcul:
   formule:
-    recalcul:
-      règle: transport . voiture . empreinte calculée
-      avec:
-        transport . voiture . motorisation: "'électrique'"
-        # transport . voiture . âge: transport . âge nouvelle voiture électrique
 # transport . âge nouvelle voiture électrique:
 #   formule:
 #     variations:
@@ -570,6 +553,10 @@ transport . voiture électrique . recalcul:
 
 #   par défaut: oui
 # # L'action disparait quand l'impact climat devient positif
+    valeur: transport . voiture . empreinte calculée
+    contexte:
+      transport . voiture . motorisation: "'électrique'"
+      # transport . voiture . âge: transport . âge nouvelle voiture électrique
 
 transport . voiture . limitation autoroute:
   titre: Passer de 130 à 110km/h
