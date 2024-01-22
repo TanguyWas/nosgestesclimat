@@ -1,0 +1,189 @@
+alimentation . petit déjeuner:
+  titre: Petit déjeuner
+  icônes: 🥐
+  formule: petit déjeuner . par jour * commun . jours par an
+
+alimentation . petit déjeuner . par semaine:
+  titre: Empreinte hebdo petit déjeuner
+  formule: par jour * commun . jours par semaine
+  unité: kgCO2e/semaine
+
+alimentation . petit déjeuner . par jour:
+  titre: Empreinte hebdo petit déjeuner
+  formule: alimentation . petit déjeuner * 1 repas/jour
+  unité: kgCO2e/jour
+
+alimentation . petit déjeuner . empreinte:
+  formule:
+    variations:
+      - si: type = 'continental'
+        alors: continental
+      - si: type = 'lait céréales'
+        alors: lait céréales
+      - si: type = 'britannique'
+        alors: britannique
+      - si: type = 'végétalien'
+        alors: végétalien
+      - sinon: 0
+  unité: kgCO2e/repas
+
+alimentation . petit déjeuner . type:
+  question: Quel petit déjeuner vous correspond le plus ?
+  description: |
+    Il existe une variété infinie de petits déjeuners. Nous en avons sélectionné quelques-uns pour que vous obteniez une réponse facilement.
+
+    Même si vous ne retrouvez pas exactement votre petit déjeuner, choisissez celui qui s'en rapproche !
+
+    > À noter que votre consommation de jus de fruits / café / thé / chocolat chaud est comptabilisée dans la question dédiée aux boissons chaudes.
+
+  par défaut: "'continental'"
+  formule:
+    une possibilité:
+      choix obligatoire: oui
+      possibilités:
+        - continental
+        - lait céréales
+        - britannique
+        - végétalien
+        - aucun
+
+alimentation . petit déjeuner . continental:
+  titre: Continental
+  formule: 0.289
+  unité: kgCO2e/repas
+  description: |
+    Petit déjeuner avec pain, viennoiserie, beurre, confiture et un fruit.
+
+    Voici le menu type utilisé pour notre calcul.
+
+    | Ingrédients     | Qte (g) | Kcal  | Protéines (g) | Lipides (g) | gCO2e /g | gCO2e |
+    | --------------- | ------- | ----- | ------------- | ----------- | -------- | ----- |
+    | Pain            | 50      | 132,5 | 4,5           | 1,6         | 0,67     | 33,5  |
+    | Vienoiserie     | 50      | 203   | 4             | 10,5        | 1,7      | 85    |
+    | Beurre demi-sel | 10      | 71,7  | 0,09          | 8,1         | 7,82     | 78,2  |
+    | Confiture       | 20      | 27,8  | 0,04          | 0,01        | 1,42     | 28,4  |
+    | Orange          | 100     | 47    | 0,9           | 0,1         | 0,64     | 64    |
+    | Total           | 230     | 482   | 9,53          | 20,31       |          | 289,1 |
+
+alimentation . petit déjeuner . lait céréales:
+  titre: Lait céréales
+  formule:
+    variations:
+      - si: type de lait = 'lait de vache'
+        alors: lait vache céréales
+      - si: type de lait = 'lait de soja'
+        alors: lait soja céréales
+      - si: type de lait = 'lait d'avoine'
+        alors: lait avoine céréales
+
+alimentation . petit déjeuner . lait vache céréales:
+  titre: Céréales avec lait de vache
+  formule: 0.468
+  unité: kgCO2e/repas
+  description: |
+    Petit déjeuner avec un produit laitier (lait de vache) et une portion de céréales.
+
+    Voici le menu type utilisé pour notre calcul.
+
+    | Ingrédients                                                                                             | Qte (g) | Kcal | Protéines (g) | Lipides (g) | gCO2e /kg | gCO2e |
+    | ------------------------------------------------------------------------------------------------------- | ------- | ---- | ------------- | ----------- | --------- | ----- |
+    | Option lait de vache                                                                                    |         |      |               |             |           |
+    | Céréales (Céréales pour petit déjeuner "équilibre" au chocolat (non enrichies en vitamines et minéraux) | 60      | 240  | 5,3           | 5           | 3,4       | 204   |
+    | Produit laitier (lait ou yaourt)                                                                        | 200     | 84   | 6,8           | 2           | 1,32      | 264   |
+    | Total                                                                                                   | 260     | 324  | 12,1          | 7           |           | 468   |
+
+alimentation . petit déjeuner . lait soja céréales:
+  titre: Céréales avec lait de soja
+  formule: 0.292
+  unité: kgCO2e/repas
+  description: |
+    Petit déjeuner avec un produit laitier (lait de soja) et une portion de céréales.
+
+    Voici le menu type utilisé pour notre calcul.
+
+    | Ingrédients                                                                                             | Qte (g) | Kcal | Protéines (g) | Lipides (g) | gCO2e /kg | gCO2e |
+    | ------------------------------------------------------------------------------------------------------- | ------- | ---- | ------------- | ----------- | --------- | ----- |
+    | Option lait de soja                                                                                     |         |      |               |             |           |
+    | Céréales (Céréales pour petit déjeuner "équilibre" au chocolat (non enrichies en vitamines et minéraux) | 60      | 240  | 5,3           | 5           | 3,4       | 204   |
+    | Produit laitier (lait ou yaourt)                                                                        | 200     | 80   | 7,6           | 4           | 0,44      | 88    |
+    | Total                                                                                                   | 260     | 320  | 12,9          | 9           |           | 292   |
+
+alimentation . petit déjeuner . lait avoine céréales:
+  titre: Céréales avec lait d'avoine
+  formule: 0.312
+  unité: kgCO2e/repas
+  description: |
+    Petit déjeuner avec un produit laitier (lait d'avoine) et une portion de céréales.
+
+    Voici le menu type utilisé pour notre calcul.
+
+    | Ingrédients                                                                                             | Qte (g) | Kcal | Protéines (g) | Lipides (g) | gCO2e /kg | gCO2e |
+    | ------------------------------------------------------------------------------------------------------- | ------- | ---- | ------------- | ----------- | --------- | ----- |
+    | Option lait d'avoine                                                                                    |         |      |               |             |           |
+    | Céréales (Céréales pour petit déjeuner "équilibre" au chocolat (non enrichies en vitamines et minéraux) | 60      | 240  | 5,3           | 5           | 3,4       | 204   |
+    | Produit laitier (lait ou yaourt)                                                                        | 200     | 80   | 7,6           | 4           | 0,54      | 108   |
+    | Total                                                                                                   | 260     | 320  | 12,9          | 9           |           | 312   |
+
+alimentation . petit déjeuner . britannique:
+  titre: Britannique
+  formule: 1.124
+  unité: kgCO2e/repas
+  description: |
+    Petit déjeuner avec 2 tranches de charcuterie, 2 œufs au plat et 3 toasts.
+
+    Voici le menu type utilisé pour notre calcul.
+
+    | Ingrédients                                | Qte (g) | Kcal | Protéines (g) | Lipides (g) | gCO2e /kg | gCO2e |
+    | ------------------------------------------ | ------- | ---- | ------------- | ----------- | --------- | ----- |
+    | Jambon                                     | 100     | 119  | 20,3          | 3,66        | 7,1       | 710   |
+    | Œufs (2 œufs au plat)                    | 100     | 147  | 13,8          | 9,7         | 3,19      | 319   |
+    | Huile                                      | 7       | 63   | 0             | 7           | 1,00      | 7     |
+    | Toasts (2 tranches - Pain de mie, courant) | 50      | 141  | 4,1           | 2,35        | 1,76      | 88    |
+    | Total                                      | 257     | 470  | 38,2          | 22,71       |           | 1124  |
+
+alimentation . petit déjeuner . végétalien:
+  titre: Végétalien
+  formule: 0.419
+  unité: kgCO2e/repas
+  description: |
+    Petit déjeuner avec une portion de muesli, un fruit et une portion de lait de soja.
+
+    Voici le menu type utilisé pour notre calcul.
+
+    | Ingrédients  | Qte (g) | Kcal  | Protéines (g) | Lipides (g) | gCO2e /kg | gCO2e |
+    | ------------ | ------- | ----- | ------------- | ----------- | --------- | ----- |
+    | Banane       | 120     | 108,6 | 1,272         | 0,6         | 2,17      | 260,4 |
+    | Kiwi         | 100     | 60,5  | 0,88          | 0,6         | 0,99      | 99    |
+    | Pomme        | 150     | 73    | 0,4           | 0,4         | 0,4       | 60    |
+    | Total        | 370     | 242,1 | 2,552         | 1,6         |           | 419,4 |
+
+alimentation . petit déjeuner . type . continental:
+  icônes: 🥐🥖
+  titre: Viennoiserie et pain
+  description: |
+    Nous avons fait le choix de considérer un petit déjeuner standard français proche du petit déjeuner appelé ["continental"](https://fr.wikipedia.org/wiki/Déjeuner#Repas_de_type_continental).
+    Il comprend pain, beurre, confiture, viennoiserie et un fruit.
+
+alimentation . petit déjeuner . type . lait céréales:
+  icônes: 🥣🎑
+  titre: Lait et céréales
+  description: |
+    Un bol de lait ou un yaourt avec des céréales. L'origine (animale ou végétale) du lait que vous buvez vous sera demandée par la suite !
+
+alimentation . petit déjeuner . type . britannique:
+  titre: Salé (type britannique)
+  icônes: 🍳🥓
+  description: |
+    Un petit dej' salé : toasts, œufs, charcuterie. Nous avons allégé le traditionnel [déjeuner anglais ou irlandais](https://fr.wikipedia.org/wiki/Petit_déjeuner_anglais) qui comprend également baked beans, saucisses, tomates, champignons, pommes de terre.
+
+alimentation . petit déjeuner . type . végétalien:
+  titre: Fruits
+  icônes: 🍌🍎
+  description: |
+    Un petit dej' composé de fruits.
+
+alimentation . petit déjeuner . type . aucun:
+  titre: Pas de petit-dej'
+  icônes: ❌
+  description: |
+    Vous ne mangez rien au petit déjeuner (mais vous pouvez boire un café, un thé ou un chocolat chaud pris en compte dans une autre question).
