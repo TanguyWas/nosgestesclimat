@@ -8,3 +8,9 @@ commun . intensité électricité:
   formule: 0.628
   note: |
     Observatoire de l'énergie, 2022.
+
+transport . voiture . km annuels moyen:
+  formule: 12150
+  unité: km
+  note: |
+    Chiffre issu de ProspEner 2015 - Scénario tendentiel qui est un outil de bilan énergétiques suivant des scénarios tendanciel. C'est la valeure utilisée par lors de l'adaptation du calculateur de l'atelier 2tonnes.
